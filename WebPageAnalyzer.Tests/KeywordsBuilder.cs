@@ -16,7 +16,7 @@ namespace WebPageAnalyzer.Tests
 
 		public Keywords Build()
 		{
-			return new Keywords(_keywords);
+			return Keywords.From(_keywords);
 		}
 	}
 }

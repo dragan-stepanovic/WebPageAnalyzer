@@ -34,7 +34,7 @@ namespace WebPageAnalyzer.Tests
 </html>
 ");
 
-			WebPageAnalyzer.Analyze(htmlPage).Should().BeEquivalentTo(new Keywords(new List<string> { "estimate", "java", "python", "heading", "soccer", "barca", "real", "code", "script", "csharp", "scala" }));
+			WebPageAnalyzer.Analyze(htmlPage).Should().BeEquivalentTo(Keywords.From(new List<string> { "estimate", "java", "python", "heading", "soccer", "barca", "real", "code", "script", "csharp", "scala" }));
 		}
 	}
 }

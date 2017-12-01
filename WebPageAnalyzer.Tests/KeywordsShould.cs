@@ -10,8 +10,8 @@ namespace WebPageAnalyzer.Tests
 		[Fact]
 		public void RemoveStopWords()
 		{
-			var keywords = new Keywords(new List<string> { "My", "First", "Heading", "My", "first", "paragraph", "My", "first", "sentence" });
-			keywords.RemoveStopWords().Should().BeEquivalentTo(new Keywords(new List<string> { "Heading", "paragraph", "sentence" }));
+			var keywords = Keywords.From(new List<string> { "My", "First", "Heading", "My", "first", "paragraph", "My", "first", "sentence" });
+			keywords.RemoveStopWords().Should().BeEquivalentTo(Keywords.From(new List<string> { "Heading", "paragraph", "sentence" }));
 		}
 
 		[Fact]
@@ -24,7 +24,7 @@ namespace WebPageAnalyzer.Tests
 				.Containing("heading", 3)
 				.Build();
 
-			keywords.GetDistinct().Should().BeEquivalentTo(new Keywords(new List<string> { "heading", "paragraph", "sentence" }));
+			keywords.GetDistinct().Should().BeEquivalentTo(Keywords.From(new List<string> { "heading", "paragraph", "sentence" }));
 		}
 
 		[Fact]
@@ -36,7 +36,7 @@ namespace WebPageAnalyzer.Tests
 				.Containing("heading", 3)
 				.Build();
 
-			keywords.SortByOccurence().Should().BeEquivalentTo(new Keywords(new List<string> { "heading", "paragraph", "sentence" }));
+			keywords.SortByOccurence().Should().BeEquivalentTo(Keywords.From(new List<string> { "heading", "paragraph", "sentence" }));
 		}
 
 		[Fact]
@@ -48,7 +48,7 @@ namespace WebPageAnalyzer.Tests
 				.Containing("sentence", 1)
 				.Build();
 
-			keywords.WithOccurenceMoreThan(2).Should().BeEquivalentTo(new Keywords(new List<string> { "heading", "heading", "heading" }));
+			keywords.WithOccurenceMoreThan(2).Should().BeEquivalentTo(Keywords.From(new List<string> { "heading", "heading", "heading" }));
 		}
 
 		[Fact]

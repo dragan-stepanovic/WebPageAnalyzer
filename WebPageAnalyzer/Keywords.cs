@@ -8,15 +8,18 @@ namespace WebPageAnalyzer
 	{
 		private readonly IEnumerable<string> _keywords;
 
-		//todo: Keywords.From
-		public Keywords(IEnumerable<string> keywords)
+		private Keywords(IEnumerable<string> keywords)
 		{
 			_keywords = keywords.Select(keyword => keyword.ToLower());
+		}
+		
+		public static Keywords From(IEnumerable<string> keywords)
+		{
+			return new Keywords(keywords);
 		}
 
 		public Keywords RemoveStopWords()
 		{
-			//todo: keyword.IsNotAStopWord()
 			return new Keywords(_keywords.Where(keyword => !StopList.Contains(keyword)));
 		}
 
@@ -57,7 +60,7 @@ namespace WebPageAnalyzer
 		{
 			if (ReferenceEquals(null, obj)) return false;
 			if (ReferenceEquals(this, obj)) return true;
-			if (obj.GetType() != this.GetType()) return false;
+			if (obj.GetType() != GetType()) return false;
 			return Equals((Keywords)obj);
 		}
 

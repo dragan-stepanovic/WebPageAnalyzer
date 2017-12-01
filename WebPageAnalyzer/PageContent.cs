@@ -31,7 +31,7 @@ namespace WebPageAnalyzer
 		{
 			if (ReferenceEquals(null, obj)) return false;
 			if (ReferenceEquals(this, obj)) return true;
-			if (obj.GetType() != this.GetType()) return false;
+			if (obj.GetType() != GetType()) return false;
 			return Equals((PageContent)obj);
 		}
 
@@ -42,7 +42,7 @@ namespace WebPageAnalyzer
 
 		public Keywords ParseKeywordsBy(char separator)
 		{
-			return new Keywords(_content.Split(separator));
+			return Keywords.From(_content.Split(separator));
 		}
 	}
 }
