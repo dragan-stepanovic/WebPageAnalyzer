@@ -19,15 +19,17 @@ namespace WebPageAnalyzer.Tests
 		}
 
 		[Fact]
-		public void RecommendTagsFromOtherUsers()
+		public void RecommendTagsWithMostOccurence()
 		{
 			var url = AUrl("www.b92.net/laprimera")
 				.WithTag("real", 2)
-				.WithTag("soccer", 4).Build();
+				.WithTag("soccer", 4)
+				.WithTag("spain", 3)
+				.Build();
 
 			var recommendedTags = url.RecommendedTags();
 
-			recommendedTags.Should().BeEquivalentTo(new List<string> { "soccer", "real" });
+			recommendedTags.Should().BeEquivalentTo(new List<string> { "soccer", "spain", "real" });
 		}
 
 		private static UrlBuilder AUrl(string urlString)
