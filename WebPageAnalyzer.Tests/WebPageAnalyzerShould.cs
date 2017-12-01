@@ -38,10 +38,11 @@ namespace WebPageAnalyzer.Tests
 			WebPageAnalyzer.Analyze(htmlPage).Should().Be(Keywords.From(new List<string> { "estimate", "java", "python", "heading", "soccer", "barca", "real", "code", "scripted", "csharp" }));
 		}
 
+		//integration test
 		[Fact]
 		public void GetContentsOfWebPage()
 		{
-			var result = WebPageAnalyzer.Analyze(new Url(@"http://www.internet-guide.co.uk/static-html.html"));
+			var result = WebPageAnalyzer.Analyze(@"http://www.internet-guide.co.uk/static-html.html");
 			result.Should().Be(Keywords.From(new List<string>
 			{
 				"web",

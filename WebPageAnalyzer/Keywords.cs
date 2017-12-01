@@ -69,9 +69,9 @@ namespace WebPageAnalyzer
 			return _keywords.GetHashCode();
 		}
 
-		public List<string> Get()
+		public override string ToString()
 		{
-			return _keywords.ToList();
+			return string.Join(", ", _keywords);
 		}
 	}
 }

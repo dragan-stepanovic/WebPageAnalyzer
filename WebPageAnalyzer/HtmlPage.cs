@@ -1,5 +1,4 @@
 using System.Linq;
-using System.Security.Policy;
 using HtmlAgilityPack;
 
 namespace WebPageAnalyzer
@@ -12,10 +11,6 @@ namespace WebPageAnalyzer
 		{
 			_html = new HtmlDocument();
 			_html.LoadHtml(htmlContent);
-		}
-
-		public HtmlPage(Url url) : this(new HtmlWeb().Load(url.Value).ParsedText)
-		{
 		}
 
 		public HtmlPage IgnoreScripts()

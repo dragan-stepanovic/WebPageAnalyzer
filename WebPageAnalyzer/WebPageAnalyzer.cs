@@ -1,4 +1,4 @@
-using System.Security.Policy;
+using HtmlAgilityPack;
 
 namespace WebPageAnalyzer
 {
@@ -6,9 +6,9 @@ namespace WebPageAnalyzer
 	{
 		public const char Separator = '|';
 
-		public static Keywords Analyze(Url url)
-		{ 
-			return Analyze(new HtmlPage(url));
+		public static Keywords Analyze(string url)
+		{
+			return Analyze(new HtmlPage(new HtmlWeb().Load(url).ParsedText));
 		}
 
 		public static Keywords Analyze(HtmlPage htmlPage)
