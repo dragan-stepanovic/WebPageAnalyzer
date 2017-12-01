@@ -10,9 +10,9 @@ namespace WebPageAnalyzer
 				.RemovePunctuation()
 				.ReplaceWhitespaceWith(Separator)
 				.ParseKeywordsBy(Separator)
-				.RemoveStopWords();
-				//.SortAscending()
-				//.GetUnique();
+				.RemoveStopWords()
+				.GetDistinct()
+				.SortByOccurence();
 		}
 	}
 }

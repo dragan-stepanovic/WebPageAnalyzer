@@ -61,6 +61,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="HtmlPageShould.cs" />
+    <Compile Include="KeywordsShould.cs" />
+    <Compile Include="PageContentShould.cs" />
     <Compile Include="WebPageAnalyzerShould.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

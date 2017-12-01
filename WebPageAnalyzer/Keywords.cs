@@ -20,9 +20,17 @@ namespace WebPageAnalyzer
 			return new Keywords(_keywords.Where(keyword => !StopList.Contains(keyword)));
 		}
 
-		public Keywords GetUnique()
+		public Keywords GetDistinct()
 		{
 			return new Keywords(_keywords.Distinct());
+		}
+
+		public Keywords SortByOccurence()
+		{
+			return new Keywords(_keywords
+				.GroupBy(keyword => keyword)
+				.OrderByDescending(group => group.Count())
+				.Select(group => group.Key));
 		}
 
 		protected bool Equals(Keywords other)
