@@ -22,7 +22,12 @@ namespace WebPageAnalyzer
 			return new PageContent(new string(_content.Where(c => !char.IsPunctuation(c)).ToArray()));
 		}
 
-		protected bool Equals(PageContent other)
+		public Keywords ParseKeywordsBy(char separator)
+		{
+			return Keywords.From(_content.Split(separator));
+		}
+
+		private bool Equals(PageContent other)
 		{
 			return string.Equals(_content, other._content);
 		}
@@ -38,11 +43,6 @@ namespace WebPageAnalyzer
 		public override int GetHashCode()
 		{
 			return _content.GetHashCode();
-		}
-
-		public Keywords ParseKeywordsBy(char separator)
-		{
-			return Keywords.From(_content.Split(separator));
 		}
 	}
 }
