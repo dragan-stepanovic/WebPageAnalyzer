@@ -10,8 +10,8 @@ namespace WebPageAnalyzer
 		private const string HttpScheme = "http://";
 		private readonly Uri _uri;
 		private readonly string _host;
-		private readonly List<string> _queryParameters;
-		private readonly Dictionary<string, int> _occurencesByTags = new Dictionary<string, int>();
+		private readonly List<string> _queryParameters = new List<string>();
+		private readonly Tags _tags = new Tags(new List<string>());
 
 		public Url(string url)
 		{
@@ -20,7 +20,19 @@ namespace WebPageAnalyzer
 
 			_uri = new Uri(url);
 			_host = _uri.Host;
-			_queryParameters = _uri.Query.Remove(0, 1).Split('&').ToList();
+			if (_uri.Query != string.Empty)
+				_queryParameters = _uri.Query.Remove(0, 1).Split('&').ToList();
+		}
+
+		public void Add(string tag)
+		{
+			_tags.Add(tag);
+		}
+
+		//design note: I was thining about adding TagRecommendationService, but currently it's too thin with functionality (only one statement), so decided to get recommended tags from Url domain object
+		public IEnumerable<string> RecommendedTags()
+		{
+			return _tags.SortByOccurence();
 		}
 
 		private bool Equals(Url other)
@@ -41,11 +53,6 @@ namespace WebPageAnalyzer
 		public override int GetHashCode()
 		{
 			return _uri.GetHashCode();
-		}
-
-		public void Add(string tag)
-		{
-			_occurencesByTags.Add(tag, _occurencesByTags[tag]++);
 		}
 	}
 }

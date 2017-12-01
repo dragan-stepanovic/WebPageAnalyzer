@@ -1,4 +1,5 @@
-﻿using FluentAssertions;
+﻿using System.Collections.Generic;
+using FluentAssertions;
 using Xunit;
 
 namespace WebPageAnalyzer.Tests
@@ -15,6 +16,23 @@ namespace WebPageAnalyzer.Tests
 			url1.Equals(url2).Should().BeTrue();
 			url1.Equals(url3).Should().BeTrue();
 			url2.Equals(url3).Should().BeTrue();
+		}
+
+		[Fact]
+		public void RecommendTagsFromOtherUsers()
+		{
+			var url = AUrl("www.b92.net/laprimera")
+				.WithTag("real", 2)
+				.WithTag("soccer", 4).Build();
+
+			var recommendedTags = url.RecommendedTags();
+
+			recommendedTags.Should().BeEquivalentTo(new List<string> { "soccer", "real" });
+		}
+
+		private static UrlBuilder AUrl(string urlString)
+		{
+			return new UrlBuilder(urlString);
 		}
 	}
 }

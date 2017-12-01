@@ -48,7 +48,6 @@
     <Compile Include="PageContent.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StopList.cs" />
-    <Compile Include="TagRecommendationService.cs" />
     <Compile Include="Tags.cs" />
     <Compile Include="Url.cs" />
     <Compile Include="User.cs" />
