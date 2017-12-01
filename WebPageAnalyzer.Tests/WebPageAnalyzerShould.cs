@@ -9,6 +9,7 @@ namespace WebPageAnalyzer.Tests
 		[Fact]
 		public void ReturnKeywordsThatOccurMoreThanTwoTimesAndShouldBeSortedInDescendingOrder()
 		{
+			//todo: refactor towards builder for input data for readability reasons. e.g. AHtmlPage().Containing("soccer", Times.Two).Containing("python", Times.Three).Build()
 			var htmlPage = new HtmlPage(@"<!DOCTYPE html>
 <html>
 <body>

@@ -12,9 +12,10 @@ namespace WebPageAnalyzer
 				.ReplaceWhitespaceWith(Separator)
 				.ParseKeywordsBy(Separator)
 				.RemoveStopWords()
-				.FilterThoseThatOccurMoreThan(Times.Two)
+				.WithOccurenceMoreThan(2)
 				.GetDistinct()
 				.SortByOccurence();
+			//.LimitToSize(10);
 		}
 	}
 }
