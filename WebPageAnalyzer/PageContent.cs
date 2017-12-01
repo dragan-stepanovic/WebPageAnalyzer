@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
 
@@ -6,6 +7,7 @@ namespace WebPageAnalyzer
 	public class PageContent
 	{
 		private readonly string _content;
+		private readonly List<char> _mathOperators = new List<char> { '+', '-', '=', '/', '*' };
 
 		public PageContent(string content)
 		{
@@ -20,11 +22,7 @@ namespace WebPageAnalyzer
 		public PageContent RemovePunctuation()
 		{
 			return new PageContent(new string(_content.Where(c => !char.IsPunctuation(c)
-									&& c != '+'
-									&& c != '-'
-									&& c != '='
-									&& c != '/'
-									&& c != '*').ToArray()));
+									&& !_mathOperators.Contains(c)).ToArray()));
 		}
 
 		public Keywords ParseKeywordsBy(char separator)
