@@ -1,21 +1,35 @@
+using System.Linq;
+using System.Security.Policy;
 using HtmlAgilityPack;
 
 namespace WebPageAnalyzer
 {
 	public class HtmlPage
 	{
-		private readonly string _content;
+		private readonly HtmlDocument _html;
 
-		public HtmlPage(string content)
+		public HtmlPage(string htmlContent)
 		{
-			_content = content;
+			_html = new HtmlDocument();
+			_html.LoadHtml(htmlContent);
+		}
+
+		public HtmlPage(Url url) : this(new HtmlWeb().Load(url.Value).ParsedText)
+		{
+		}
+
+		public HtmlPage IgnoreScripts()
+		{
+			_html.DocumentNode.Descendants()
+				.Where(n => n.Name == "script" || n.Name == "style")
+				.ToList()
+				.ForEach(n => n.Remove());
+			return new HtmlPage(_html.ParsedText);
 		}
 
 		public PageContent StripTags()
 		{
-			var doc = new HtmlDocument();
-			doc.LoadHtml(_content);
-			return new PageContent(doc.DocumentNode.InnerText);
+			return new PageContent(_html.DocumentNode.InnerText);
 		}
 	}
 }

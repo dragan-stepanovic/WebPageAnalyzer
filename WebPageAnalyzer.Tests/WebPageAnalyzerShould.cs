@@ -17,14 +17,14 @@ namespace WebPageAnalyzer.Tests
 
 <h1>My First Heading</h1> <p>My first paragraph.</p>
 
-<p>My first heading.</p> <p>My first sentence.</p> <p>My first heading.</p> <p>My first sentence.</p> 
+<p>My first heading.</p> <p>My first sentence.</p> <p>My first heading.</p> <p>My first sentence.</p>
 
 <p>My first soccer.</p> <p>My first soccer.</p>  <p>My first soccer.</p>
 <p>My first barca.</p>  <p>My first barca.</p>  <p>My first barca.</p>
 <p>My first real.</p> <p>My first real.</p> <p>My first real.</p>
 <p>My first code.</p> <p>My first code.</p> <p>My first code.</p>
 <p>My first estimate.</p> <p>My first estimate.</p> <p>My first estimate.</p> <p>My first estimate.</p>
-<p>My first script.</p> <p>My first script.</p> <p>My first script.</p>
+<p>My first scripted.</p> <p>My first scripted.</p> <p>My first scripted.</p>
 <p>My first csharp.</p> <p>My first csharp.</p> <p>My first csharp.</p>
 <p>My first java.</p> <p>My first java.</p> <p>My first java.</p> <p>My first java.</p>
 <p>My first python.</p> <p>My first python.</p> <p>My first python.</p> <p>My first python.</p>
@@ -34,7 +34,14 @@ namespace WebPageAnalyzer.Tests
 </html>
 ");
 
-			WebPageAnalyzer.Analyze(htmlPage).Should().Be(Keywords.From(new List<string> { "estimate", "java", "python", "heading", "soccer", "barca", "real", "code", "script", "csharp", "scala" }));
+			WebPageAnalyzer.Analyze(htmlPage).Should().Be(Keywords.From(new List<string> { "estimate", "java", "python", "heading", "soccer", "barca", "real", "code", "scripted", "csharp" }));
 		}
+
+		//[Fact]
+		//public void GetContentsOfWebPage()
+		//{
+		//	var result = WebPageAnalyzer.Analyze(new Url(@"https://www.b92.net/eng/news/world.php?yyyy=2017&mm=11&dd=24&nav_id=102884")).Get();
+
+		//}
 	}
 }

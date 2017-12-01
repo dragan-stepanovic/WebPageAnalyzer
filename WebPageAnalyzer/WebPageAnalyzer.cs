@@ -1,3 +1,5 @@
+using System.Security.Policy;
+
 namespace WebPageAnalyzer
 {
 	public static class WebPageAnalyzer
@@ -7,14 +9,21 @@ namespace WebPageAnalyzer
 		public static Keywords Analyze(HtmlPage htmlPage)
 		{
 			return htmlPage
+				.IgnoreScripts()
 				.StripTags()
 				.RemovePunctuation()
 				.ReplaceWhitespaceWith(Separator)
 				.ParseKeywordsBy(Separator)
 				.RemoveStopWords()
 				.WithOccurenceMoreThan(2)
+				.SortByOccurence()
 				.GetDistinct()
-				.SortByOccurence();
+				.LimitResultSizeTo(10);
+		}
+
+		public static Keywords Analyze(Url url)
+		{ 
+			return Analyze(new HtmlPage(url));
 		}
 	}
 }

@@ -68,5 +68,10 @@ namespace WebPageAnalyzer
 		{
 			return _keywords.GetHashCode();
 		}
+
+		public List<string> Get()
+		{
+			return _keywords.ToList();
+		}
 	}
 }
