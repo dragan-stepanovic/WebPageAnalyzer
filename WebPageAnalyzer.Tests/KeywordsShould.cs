@@ -23,7 +23,10 @@ namespace WebPageAnalyzer.Tests
 				.Containing("heading", 3)
 				.Build();
 
-			keywords.GetDistinct().Should().Be(Keywords.From(new List<string> { "heading", "paragraph", "sentence" }));
+			keywords
+				.GetDistinct()
+				.Should()
+				.Be(Keywords.From(new List<string> { "heading", "paragraph", "sentence" }));
 		}
 
 		[Fact]
@@ -35,7 +38,10 @@ namespace WebPageAnalyzer.Tests
 				.Containing("heading", 3)
 				.Build();
 
-			keywords.SortByOccurence().Should().Be(Keywords.From(new List<string> { "heading", "paragraph", "sentence" }));
+			keywords
+				.SortByOccurence()
+				.Should()
+				.Be(Keywords.From(new List<string> { "heading", "paragraph", "sentence" }));
 		}
 
 		[Fact]

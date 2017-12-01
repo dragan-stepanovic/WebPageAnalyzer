@@ -7,6 +7,7 @@ namespace WebPageAnalyzer.Tests
 		[Fact]
 		public void RecommendTagsFromOtherUsers()
 		{
+				
 		}
 	}
 }

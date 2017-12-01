@@ -35,7 +35,10 @@ namespace WebPageAnalyzer.Tests
 </html>
 ");
 
-			WebPageAnalyzer.Analyze(htmlPage).Should().Be(Keywords.From(new List<string> { "estimate", "java", "python", "heading", "soccer", "barca", "real", "code", "scripted", "csharp" }));
+			WebPageAnalyzer
+				.Analyze(htmlPage)
+				.Should()
+				.Be(Keywords.From(new List<string> { "estimate", "java", "python", "heading", "soccer", "barca", "real", "code", "scripted", "csharp" }));
 		}
 
 		//integration test
