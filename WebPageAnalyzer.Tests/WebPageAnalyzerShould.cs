@@ -19,11 +19,13 @@ namespace WebPageAnalyzer.Tests
 
 <p>My first heading.</p>
 
+<p>My first sentence.</p>
+
 </body>
 </html>
 ");
 
-			new WebPageAnalyzer().Analyze(htmlPage).Should().BeEquivalentTo(new Keywords(new List<string> { "first", "heading" }));
+			WebPageAnalyzer.Analyze(htmlPage).Should().BeEquivalentTo(new Keywords(new List<string> { "first", "heading" }));
 		}
 
 		[Fact]
@@ -66,6 +68,13 @@ namespace WebPageAnalyzer.Tests
 		{
 			var keywords = new Keywords(new List<string> { "My", "First", "Heading", "My", "first", "paragraph", "My", "first", "sentence" });
 			keywords.RemoveStopWords().Should().BeEquivalentTo(new Keywords(new List<string> { "Heading", "paragraph", "sentence" }));
+		}
+
+		[Fact]
+		public void GetUniqueKeywords()
+		{
+			var keywords = new Keywords(new List<string> { "heading", "paragraph", "heading", "sentence", "heading", "paragraph" });
+			keywords.GetUnique().Should().BeEquivalentTo(new Keywords(new List<string> { "heading", "paragraph", "sentence" }));
 		}
 	}
 }

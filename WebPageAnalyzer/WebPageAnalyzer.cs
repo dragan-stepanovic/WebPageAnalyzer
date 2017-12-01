@@ -1,17 +1,18 @@
 namespace WebPageAnalyzer
 {
-	public class WebPageAnalyzer
+	public static class WebPageAnalyzer
 	{
 		public const char Separator = '|';
 
-		public Keywords Analyze(HtmlPage htmlPage)
+		public static Keywords Analyze(HtmlPage htmlPage)
 		{
 			return htmlPage.StripTags()
 				.RemovePunctuation()
 				.ReplaceWhitespaceWith(Separator)
 				.ParseKeywordsBy(Separator)
-				.RemoveStopWords()
-				.FlattenKeywords();
+				.RemoveStopWords();
+				//.SortAscending()
+				//.GetUnique();
 		}
 	}
 }

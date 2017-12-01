@@ -8,6 +8,7 @@ namespace WebPageAnalyzer
 	{
 		private readonly IEnumerable<string> _keywords;
 
+		//todo: Keywords.From
 		public Keywords(IEnumerable<string> keywords)
 		{
 			_keywords = keywords.Select(keyword => keyword.ToLower());
@@ -16,8 +17,12 @@ namespace WebPageAnalyzer
 		public Keywords RemoveStopWords()
 		{
 			//todo: keyword.IsNotAStopWord()
-			var result = new Keywords(_keywords.Where(keyword => !StopList.Contains(keyword)));
-			return result;
+			return new Keywords(_keywords.Where(keyword => !StopList.Contains(keyword)));
+		}
+
+		public Keywords GetUnique()
+		{
+			return new Keywords(_keywords.Distinct());
 		}
 
 		protected bool Equals(Keywords other)
