@@ -6,11 +6,13 @@ namespace WebPageAnalyzer
 
 		public static Keywords Analyze(HtmlPage htmlPage)
 		{
-			return htmlPage.StripTags()
+			return htmlPage
+				.StripTags()
 				.RemovePunctuation()
 				.ReplaceWhitespaceWith(Separator)
 				.ParseKeywordsBy(Separator)
 				.RemoveStopWords()
+				.FilterThoseThatOccurMoreThan(Times.Two)
 				.GetDistinct()
 				.SortByOccurence();
 		}

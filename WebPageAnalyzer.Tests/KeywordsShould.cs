@@ -6,6 +6,7 @@ namespace WebPageAnalyzer.Tests
 {
 	public class KeywordsShould
 	{
+		//todo: refactor towards Builder pattern for test input data. E.g. Keywords().Having("My").Having("Heading").Build()
 		[Fact]
 		public void RemoveStopWords()
 		{
@@ -25,6 +26,13 @@ namespace WebPageAnalyzer.Tests
 		{
 			var keywords = new Keywords(new List<string> { "heading", "paragraph", "heading", "sentence", "heading", "paragraph" });
 			keywords.SortByOccurence().Should().BeEquivalentTo(new Keywords(new List<string> { "heading", "paragraph", "sentence" }));
+		}
+
+		[Fact]
+		public void FilterThoseThatOccurMoreThanTwoTimes()
+		{
+			var keywords = new Keywords(new List<string> { "heading", "paragraph", "heading", "sentence", "heading", "paragraph" });
+			keywords.FilterThoseThatOccurMoreThan(Times.Two).Should().BeEquivalentTo(new Keywords(new List<string> { "heading", "heading", "heading" }));
 		}
 	}
 }

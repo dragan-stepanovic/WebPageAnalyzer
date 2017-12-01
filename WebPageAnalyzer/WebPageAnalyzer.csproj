@@ -53,6 +53,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="StopList.cs" />
+    <Compile Include="Times.cs" />
     <Compile Include="WebPageAnalyzer.cs" />
   </ItemGroup>
   <ItemGroup>

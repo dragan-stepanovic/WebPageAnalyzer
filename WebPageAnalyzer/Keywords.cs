@@ -33,6 +33,11 @@ namespace WebPageAnalyzer
 				.Select(group => group.Key));
 		}
 
+		public Keywords FilterThoseThatOccurMoreThan(int times)
+		{
+			return new Keywords(_keywords.Where(keyword => _keywords.Count(k => k.Equals(keyword)) > times));
+		}
+
 		protected bool Equals(Keywords other)
 		{
 			return _keywords.SequenceEqual(other._keywords);
