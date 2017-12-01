@@ -41,6 +41,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Design" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -66,6 +67,7 @@
     <Compile Include="KeywordsShould.cs" />
     <Compile Include="PageContentShould.cs" />
     <Compile Include="TagRecommendationServiceShould.cs" />
+    <Compile Include="UrlBuilder.cs" />
     <Compile Include="UrlShould.cs" />
     <Compile Include="WebPageAnalyzerShould.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

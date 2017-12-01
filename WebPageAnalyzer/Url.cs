@@ -7,10 +7,11 @@ namespace WebPageAnalyzer
 	//design note: didn't find any utility C# library for comparing URLs while not taking into an account the order of query params, so wrote my own
 	public class Url
 	{
-		private readonly string _host;
-		private readonly Uri _uri;
-		private readonly List<string> _queryParameters;
 		private const string HttpScheme = "http://";
+		private readonly Uri _uri;
+		private readonly string _host;
+		private readonly List<string> _queryParameters;
+		private readonly Dictionary<string, int> _occurencesByTags = new Dictionary<string, int>();
 
 		public Url(string url)
 		{
@@ -24,9 +25,9 @@ namespace WebPageAnalyzer
 
 		private bool Equals(Url other)
 		{
-			return _queryParameters.Count.Equals(other._queryParameters.Count)
-				   && _queryParameters.All(other._queryParameters.Contains)
-				   && _host.Equals(other._host);
+			return _host.Equals(other._host) &&
+					_queryParameters.Count.Equals(other._queryParameters.Count) &&
+					_queryParameters.All(other._queryParameters.Contains);
 		}
 
 		public override bool Equals(object obj)
@@ -40,6 +41,11 @@ namespace WebPageAnalyzer
 		public override int GetHashCode()
 		{
 			return _uri.GetHashCode();
+		}
+
+		public void Add(string tag)
+		{
+			_occurencesByTags.Add(tag, _occurencesByTags[tag]++);
 		}
 	}
 }
