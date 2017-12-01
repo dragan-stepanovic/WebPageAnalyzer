@@ -15,7 +15,6 @@ namespace WebPageAnalyzer
 				.WithOccurenceMoreThan(2)
 				.GetDistinct()
 				.SortByOccurence();
-			//.LimitToSize(10);
 		}
 	}
 }

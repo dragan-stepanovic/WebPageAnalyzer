@@ -62,6 +62,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="HtmlPageShould.cs" />
+    <Compile Include="KeywordsBuilder.cs" />
     <Compile Include="KeywordsShould.cs" />
     <Compile Include="PageContentShould.cs" />
     <Compile Include="WebPageAnalyzerShould.cs" />

@@ -9,7 +9,8 @@ namespace WebPageAnalyzer.Tests
 		[Fact]
 		public void ReturnKeywordsThatOccurMoreThanTwoTimesAndShouldBeSortedInDescendingOrder()
 		{
-			//todo: refactor towards builder for input data for readability reasons. e.g. AHtmlPage().Containing("soccer", Times.Two).Containing("python", Times.Three).Build()
+			//design note: could refactor towards builder for input data for readability reasons. e.g. AHtmlPage().Containing("soccer", Times.Two).Containing("python", Times.Three).Build()
+			//but in this particular case I think it would actually hinder the relation between input and expected result because of the stop words, punctuation etc.
 			var htmlPage = new HtmlPage(@"<!DOCTYPE html>
 <html>
 <body>
