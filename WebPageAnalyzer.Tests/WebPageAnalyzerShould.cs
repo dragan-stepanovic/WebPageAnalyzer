@@ -23,7 +23,7 @@ namespace WebPageAnalyzer.Tests
 </html>
 ");
 
-			new WebPageAnalyzer().Analyze(htmlPage).Should().BeEquivalentTo(new List<string> { "first", "heading" });
+			new WebPageAnalyzer().Analyze(htmlPage).Should().BeEquivalentTo(new Keywords(new List<string> { "first", "heading" }));
 		}
 
 		[Fact]
@@ -48,7 +48,7 @@ namespace WebPageAnalyzer.Tests
 		public void RemovePunctuation()
 		{
 			const string keywords = "My !First Heading? My first paragraph. My first sentence.";
-			new PageContent(keywords).RemovePunctuation().Should().Be("My First Heading My first paragraph My first sentence");
+			new PageContent(keywords).RemovePunctuation().Should().Be(new PageContent("My First Heading My first paragraph My first sentence"));
 		}
 
 		[Fact]
@@ -58,15 +58,14 @@ namespace WebPageAnalyzer.Tests
 				new PageContent(
 					"\r\n\r\n\r\n\r\nMy First Heading\r\n\r\nMy first paragraph.\r\n\r\n\r\n\r\nMy first sentence.\r\n\r\n\r\n\r\n");
 
-			const string separator = "|";
-			pageContent.ReplaceWhitespaceWith(separator).Should().Be("My|First|Heading|My|first|paragraph.|My|first|sentence.");
+			pageContent.ReplaceWhitespaceWith(WebPageAnalyzer.Separator).Should().Be(new PageContent("My|First|Heading|My|first|paragraph.|My|first|sentence."));
 		}
 
 		[Fact]
 		public void RemoveStopWords()
 		{
 			var keywords = new Keywords(new List<string> { "My", "First", "Heading", "My", "first", "paragraph", "My", "first", "sentence" });
-			keywords.RemoveStopWords().Should().Be(new Keywords(new List<string> { "Heading", "paragraph", "sentence" }));
+			keywords.RemoveStopWords().Should().BeEquivalentTo(new Keywords(new List<string> { "Heading", "paragraph", "sentence" }));
 		}
 	}
 }

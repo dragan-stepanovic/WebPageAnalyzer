@@ -1,12 +1,17 @@
-using System.Collections.Generic;
-
 namespace WebPageAnalyzer
 {
 	public class WebPageAnalyzer
 	{
-		public IEnumerable<string> Analyze(HtmlPage html)
+		public const char Separator = '|';
+
+		public Keywords Analyze(HtmlPage htmlPage)
 		{
-			return new List<string>();
+			return htmlPage.StripTags()
+				.RemovePunctuation()
+				.ReplaceWhitespaceWith(Separator)
+				.ParseKeywordsBy(Separator)
+				.RemoveStopWords()
+				.FlattenKeywords();
 		}
 	}
 }

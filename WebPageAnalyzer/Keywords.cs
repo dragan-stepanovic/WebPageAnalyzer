@@ -1,9 +1,10 @@
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
 namespace WebPageAnalyzer
 {
-	public class Keywords
+	public class Keywords : IEnumerable<string>
 	{
 		private readonly IEnumerable<string> _keywords;
 
@@ -24,6 +25,11 @@ namespace WebPageAnalyzer
 			return _keywords.SequenceEqual(other._keywords);
 		}
 
+		public IEnumerator<string> GetEnumerator()
+		{
+			return _keywords.GetEnumerator();
+		}
+
 		public override bool Equals(object obj)
 		{
 			if (ReferenceEquals(null, obj)) return false;
@@ -35,6 +41,11 @@ namespace WebPageAnalyzer
 		public override int GetHashCode()
 		{
 			return _keywords.GetHashCode();
+		}
+
+		IEnumerator IEnumerable.GetEnumerator()
+		{
+			return GetEnumerator();
 		}
 	}
 }

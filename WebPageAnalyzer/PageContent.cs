@@ -12,14 +12,14 @@ namespace WebPageAnalyzer
 			_content = content;
 		}
 
-		public string ReplaceWhitespaceWith(string separator)
+		public PageContent ReplaceWhitespaceWith(char separator)
 		{
-			return Regex.Replace(_content.Trim(), @"\s+", separator);
+			return new PageContent(Regex.Replace(_content.Trim(), @"\s+", separator.ToString()));
 		}
 
-		public string RemovePunctuation()
+		public PageContent RemovePunctuation()
 		{
-			return new string(_content.Where(c => !char.IsPunctuation(c)).ToArray());
+			return new PageContent(new string(_content.Where(c => !char.IsPunctuation(c)).ToArray()));
 		}
 
 		protected bool Equals(PageContent other)
@@ -32,12 +32,17 @@ namespace WebPageAnalyzer
 			if (ReferenceEquals(null, obj)) return false;
 			if (ReferenceEquals(this, obj)) return true;
 			if (obj.GetType() != this.GetType()) return false;
-			return Equals((PageContent) obj);
+			return Equals((PageContent)obj);
 		}
 
 		public override int GetHashCode()
 		{
 			return _content.GetHashCode();
+		}
+
+		public Keywords ParseKeywordsBy(char separator)
+		{
+			return new Keywords(_content.Split(separator));
 		}
 	}
 }
