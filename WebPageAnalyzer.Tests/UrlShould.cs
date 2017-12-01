@@ -3,10 +3,10 @@ using Xunit;
 
 namespace WebPageAnalyzer.Tests
 {
-	public class UrlTests
+	public class UrlShould
 	{
 		[Fact]
-		public void ShouldMatchEquivalentUrlStrings()
+		public void MatchesEquivalentUrlsByStrings()
 		{
 			var url1 = new Url("www.example.com/?foo=bar&hello=world");
 			var url2 = new Url("http://www.example.com/?hello=world&foo=bar");

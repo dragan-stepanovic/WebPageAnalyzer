@@ -65,7 +65,8 @@
     <Compile Include="KeywordsBuilder.cs" />
     <Compile Include="KeywordsShould.cs" />
     <Compile Include="PageContentShould.cs" />
-    <Compile Include="UrlTests.cs" />
+    <Compile Include="TagRecommendationServiceShould.cs" />
+    <Compile Include="UrlShould.cs" />
     <Compile Include="WebPageAnalyzerShould.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
