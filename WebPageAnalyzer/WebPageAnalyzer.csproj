@@ -50,7 +50,6 @@
     <Compile Include="StopList.cs" />
     <Compile Include="Tags.cs" />
     <Compile Include="Url.cs" />
-    <Compile Include="User.cs" />
     <Compile Include="WebPageAnalyzer.cs" />
   </ItemGroup>
   <ItemGroup>
