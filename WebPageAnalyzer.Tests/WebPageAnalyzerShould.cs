@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Security.Policy;
 using FluentAssertions;
 using Xunit;
 
@@ -37,11 +38,20 @@ namespace WebPageAnalyzer.Tests
 			WebPageAnalyzer.Analyze(htmlPage).Should().Be(Keywords.From(new List<string> { "estimate", "java", "python", "heading", "soccer", "barca", "real", "code", "scripted", "csharp" }));
 		}
 
-		//[Fact]
-		//public void GetContentsOfWebPage()
-		//{
-		//	var result = WebPageAnalyzer.Analyze(new Url(@"https://www.b92.net/eng/news/world.php?yyyy=2017&mm=11&dd=24&nav_id=102884")).Get();
-
-		//}
+		[Fact]
+		public void GetContentsOfWebPage()
+		{
+			var result = WebPageAnalyzer.Analyze(new Url(@"http://www.internet-guide.co.uk/static-html.html"));
+			result.Should().Be(Keywords.From(new List<string>
+			{
+				"web",
+				"page",
+				"static",
+				"content",
+				"html",
+				"example",
+				"dynamic"
+			}));
+		}
 	}
 }

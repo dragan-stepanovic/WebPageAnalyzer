@@ -6,6 +6,11 @@ namespace WebPageAnalyzer
 	{
 		public const char Separator = '|';
 
+		public static Keywords Analyze(Url url)
+		{ 
+			return Analyze(new HtmlPage(url));
+		}
+
 		public static Keywords Analyze(HtmlPage htmlPage)
 		{
 			return htmlPage
@@ -19,11 +24,6 @@ namespace WebPageAnalyzer
 				.SortByOccurence()
 				.GetDistinct()
 				.LimitResultSizeTo(10);
-		}
-
-		public static Keywords Analyze(Url url)
-		{ 
-			return Analyze(new HtmlPage(url));
 		}
 	}
 }

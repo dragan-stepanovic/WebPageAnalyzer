@@ -19,7 +19,12 @@ namespace WebPageAnalyzer
 
 		public PageContent RemovePunctuation()
 		{
-			return new PageContent(new string(_content.Where(c => !char.IsPunctuation(c)).ToArray()));
+			return new PageContent(new string(_content.Where(c => !char.IsPunctuation(c)
+									&& c != '+'
+									&& c != '-'
+									&& c != '='
+									&& c != '/'
+									&& c != '*').ToArray()));
 		}
 
 		public Keywords ParseKeywordsBy(char separator)
